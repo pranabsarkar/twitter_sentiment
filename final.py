@@ -4,7 +4,7 @@ import re
 import tweepy
 from textblob import TextBlob
 import matplotlib.pyplot as plt
-%matplotlib inline
+
 
 
 consumer_key='Pj1ktSla52qTXgt61Q7TjbK6b'
@@ -19,7 +19,7 @@ auth.set_access_token(access_token,access_token_secret)
 api=tweepy.API(auth)
 
 inp=input("Enter The Text you want to find : ")
-public_tweets=api.search(inp,count=100)
+public_tweets=api.search(inp,count=5000)
 
 sentence_api=np.array([])
 polarity_arr=np.array([])
@@ -55,7 +55,7 @@ new_df=pd.DataFrame(list,index=['Neutral','Positive','Negative'],columns=['Senti
 
 plt.pie(new_df,labels=['Neutral','Positive','Negative'],explode=[0.1,0.1,0.1])
 plt.show()
-new_df.to_csv('2.csv')
+df_main.to_csv('details.csv')
 
 
 
