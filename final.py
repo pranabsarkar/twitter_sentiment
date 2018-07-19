@@ -3,6 +3,9 @@ import numpy as np
 import re
 import tweepy
 from textblob import TextBlob
+import matplotlib.pyplot as plt
+%matplotlib inline
+
 
 consumer_key='Pj1ktSla52qTXgt61Q7TjbK6b'
 consumer_secret='JPu60Ct2473xococU8LiKPtKevpbShqQKYgpq7ISXbVZSKJObU'
@@ -21,7 +24,9 @@ public_tweets=api.search(inp,count=100)
 sentence_api=np.array([])
 polarity_arr=np.array([])
 subjectivity_arr=np.array([])
-
+positive=0
+negative=0
+neutral=0
 
 for tweet in public_tweets:
 
@@ -31,21 +36,26 @@ for tweet in public_tweets:
     nrr=analysis.sentiment.polarity
     if nrr>0:
         nrr='positive'
+        positive+=1
     elif nrr==0:
         nrr='neutral'
+        neutral+=1
     else:
         nrr='negative'
+        negative+=1
     polarity_arr=np.append(polarity_arr,nrr)
     subjectivity_arr=np.append(subjectivity_arr,analysis.sentiment.subjectivity)
     dict={'sentence':sentence_api,'polarity':polarity_arr,'subjectivity':subjectivity_arr}
 
     df_main=pd.DataFrame(dict)
 
-df_main=pd.DataFrame(df_main.dropna())
-#print(df_main)
-df=pd.DataFrame(df_main.polarity)
+df_main=pd.DataFrame(df_main.dropna()) 
+list=np.array([neutral,positive,negative])
+new_df=pd.DataFrame(list,index=['Neutral','Positive','Negative'],columns=['Sentiment'])
 
-df.to_csv('2.csv')
+plt.pie(new_df,labels=['Neutral','Positive','Negative'],explode=[0.1,0.1,0.1])
+plt.show()
+new_df.to_csv('2.csv')
 
 
 
