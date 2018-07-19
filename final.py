@@ -7,11 +7,11 @@ import matplotlib.pyplot as plt
 
 
 
-consumer_key='Pj1ktSla52qTXgt61Q7TjbK6b'
-consumer_secret='JPu60Ct2473xococU8LiKPtKevpbShqQKYgpq7ISXbVZSKJObU'
+consumer_key='enter your own key'
+consumer_secret='enter your own key'
 
-access_token='1016812415994875906-WoYwnT7j0Na3NRpuRByHxSGCljFGHj'
-access_token_secret='iP5XBVfOhw66K7tX84GoQqGkPa9779hQDMiHgQIuytpS5'
+access_token='enter your own key'
+access_token_secret='enter your own key'
 
 auth=tweepy.OAuthHandler(consumer_key,consumer_secret)
 auth.set_access_token(access_token,access_token_secret)
